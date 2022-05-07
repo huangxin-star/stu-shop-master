@@ -35,8 +35,8 @@ function index(props) {
         <Sider width={200} style={{ background: "#fff" }}>
           <Menu
             mode="inline"
-            defaultSelectedKeys={["1"]}
-            defaultOpenKeys={["sub1"]}
+            defaultSelectedKeys={["/admin/dashboard"]}
+            // defaultOpenKeys={["/admin/dashboard"]}
             style={{ height: "100%", borderRight: 0 }}
           >
             {routes.map((route) => {

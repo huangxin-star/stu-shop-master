@@ -15,18 +15,20 @@ const Index = (props, ref) => {
   // 打开
   const open = (record = {}, type) => {
     console.log(type);
-    if (type === 'update'){
+    console.log(props);
+    if (type === "update") {
       form.setFieldsValue(record);
       setType(type);
     }
-    if(type === 'add'){
+    if (type === "add") {
       form.resetFields();
       setType(type);
-      console.log('add');
+      console.log("add");
     }
     setIsModalVisible(true);
   };
   useEffect(() => {
+    console.log(props);
   }, []);
   // 关闭
   const close = () => {
@@ -43,14 +45,20 @@ const Index = (props, ref) => {
   }));
   const handleCancel = () => {
     setIsModalVisible(false);
-    console.log('----');
+    console.log("----");
   };
   return (
     <>
-      <Modal title={type==='update'?'修改商品':'增加商品'} onOk={handleOk} onCancel={handleCancel} {...rest} visible={isModalVisible}>
+      <Modal
+        title={type === "update" ? "修改商品" : "增加商品"}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        {...rest}
+        visible={isModalVisible}
+      >
         <Form form={form} ref={formRef}>
           <Form.Item label="商品id" name="id">
-            {type==='update'?<Input disabled></Input>:<Input ></Input>}          
+            {type === "update" ? <Input disabled></Input> : <Input></Input>}
           </Form.Item>
           <Form.Item label="商品名称" name="name">
             <Input></Input>

@@ -2,7 +2,7 @@ import Index from '../pages/admin/dashboard/Index'
 import List from '../pages/admin/products/List'
 import Edit from '../pages/admin/products/Edit'
 import PageNotFound from '../pages/PageNotFound'
-import Login from '../pages/Login'
+import Login from '../pages/Login.tsx'
 export const mainRoutes = [{
     path: '/login',
     component: Login,

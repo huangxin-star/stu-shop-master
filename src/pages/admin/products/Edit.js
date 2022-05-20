@@ -1,9 +1,14 @@
-import React, { Component,useState } from "react";
+import React, { Component, createRef, useState, useEffect } from "react";
 import { Form, Card, Input, Button, message, Upload } from "antd";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import { serverUrl } from "../../../utils/config";
+import "./edit.scss";
 export default function Edit(props) {
   const [form] = Form.useForm();
+  const boxRef = createRef();
+  const gsRef = createRef();
+  const sonRef = createRef();
+  const h2Ref = createRef();
   const [imageUrl, setImageUrl] = useState("");
   const [loading, setLoading] = useState(false);
   const handleSubmit = async (e) => {
@@ -13,6 +18,17 @@ export default function Edit(props) {
     // const data = await response.json()
     //   console.log(data);
   };
+  const text = (<p>我是文本内容</p>);
+
+  useEffect(() => {
+    h2Ref.current.innerHTML =
+      "box offsetHeight:" +
+      boxRef.current.offsetHeight +
+      "box scrollHeight:" +
+      boxRef.current.scrollHeight +
+      "son offsetHeight:" +
+      sonRef.current.offsetHeight;
+  });
   const uploadButton = (
     <div>
       {loading ? <LoadingOutlined /> : <PlusOutlined />}{" "}
@@ -39,45 +55,20 @@ export default function Edit(props) {
   };
   return (
     <Card title="商品管理">
-      <Form
-        onSubmit={(e) => {
-          handleSubmit(e);
-        }}
-        form={form}
-      >
-        <Form.Item
-          label="名字"
-          rules={[{ required: true, message: "商品名字不能为空" }]}
-        >
-          <Input
-            type="text"
-            placeholder="请输入商品名字"
-            name="username"
-          ></Input>
-        </Form.Item>
-        <Form.Item
-          label="密码"
-          rules={[{ required: true, message: "商品名字不能为空" }]}
-        >
-          <Input
-            type="text"
-            placeholder="请输入商品名字"
-            name="password"
-          ></Input>
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit" onClick={handleSubmit}>
-            保存
-          </Button>
-        </Form.Item>
-      </Form>
+      <div className="box" ref={boxRef}>
+        <div className="son" ref={sonRef}>
+          <div className="gs" ref={gsRef}></div>
+        </div>
+      </div>
+      <h2 ref={h2Ref}>www</h2>
+      {text}
       <Upload
         name="file"
         listType="picture-card"
         className="avatar-uploader"
         showUploadList={false}
-        action={serverUrl + '/houses/image'}
-        onChange={(info) =>handleChange(info)}
+        action={serverUrl + "/houses/image"}
+        onChange={(info) => handleChange(info)}
       >
         {imageUrl ? (
           <img
